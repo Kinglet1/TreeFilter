@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="jstree-bootstrap-theme/libs/bootstrap/css/bootstrap.min.css" />
+
+<link rel="stylesheet" href="jstree-bootstrap-theme/dist/themes/proton/style.min.css" />
+<script src="jstree-bootstrap-theme/dist/libs/jquery.js"></script>
+<script src="jstree-bootstrap-theme/dist/jstree.min.js"></script>
+
+<style>
+    .jstree-themeicon {
+        display: none !important;
+    }
+
+    input.form-control, .btn {
+        height: 30px;
+        line-height: 30px;
+        padding: 0 5px;
+    }
+
+    .btn {
+        padding: 0 10px;
+    }
+
+    .glyphicon {
+        top: 0;
+        width: auto !important;
+    }
+</style>
+
+<div style="font-weight: bold; margin-bottom: 15px">По категории</div>
+
+<form id="s" class="form form-inline">
+    <div class="form-group">
+        <input  placeholder="Введите текст для поиска" type="search" class="form-control" id="q" />
+    </div>
+    <button type="submit" class="btn btn-primary glyphicon glyphicon-search"></button>
+</form>
+<div id="container">
+    <ul>
+        <li data-jstree='{"opened":true}'>Электроника и бытовая техника
+            <ul>
+                <li id="child_node1">Сотовые телефоны</li>
+                <li id="child_node2">Телевизоры</li>
+                <li id="child_node3">Планшеты</li>
+                <li id="child_node4">Фотоаппараты</li>
+            </ul>
+        </li>
+        <li>Бытовая техника
+            <ul>
+                <li id="child_node5">Холодильники</li>
+                <li id="child_node6">Стиральные машины</li>
+                <li id="child_node7">Пылесосы</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+<script>
+    $('#container').jstree({
+        'plugins' : ["search", "checkbox"],
+        'core': {
+            'themes': {
+                'name': 'proton',
+                'responsive': true
+            }
+        }
+    });
+    $("#s").submit(function(e) {
+        e.preventDefault();
+        $("#container").jstree(true).search($("#q").val());
+    });
+</script>
